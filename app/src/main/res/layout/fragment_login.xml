@@ -9,7 +9,7 @@
     >
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/logoImage"
+        android:id="@+id/signLogoImage"
         android:layout_width="match_parent"
         android:layout_height="280dp"
         android:layout_marginTop="32dp"
@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/emailTxt"
+        android:id="@+id/signEmailTxt"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -33,7 +33,7 @@
         app:boxStrokeColor="#DCD6F7"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logoImage">
+        app:layout_constraintTop_toBottomOf="@+id/signLogoImage">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -44,7 +44,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/passwordTxt"
+        android:id="@+id/signPasswordTxt"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -58,7 +58,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:endIconMode="password_toggle"
         app:endIconTint="#DCD6F7"
-        app:layout_constraintTop_toBottomOf="@+id/emailTxt">
+        app:layout_constraintTop_toBottomOf="@+id/signEmailTxt">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -79,7 +79,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordTxt" />
+        app:layout_constraintTop_toBottomOf="@+id/signPasswordTxt" />
 
     <Button
         android:id="@+id/textButton"
