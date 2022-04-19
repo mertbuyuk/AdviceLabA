@@ -1,4 +1,4 @@
-package com.mb.advlab.model
+package com.mb.advlab.model.responses
 
 data class BaseModel(
      val message : String,

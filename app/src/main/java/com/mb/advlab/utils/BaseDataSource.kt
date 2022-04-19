@@ -15,7 +15,7 @@ abstract class BaseDataSource {
 
         val response = call()
 
-        if (response.code() == 200 ){
+        if (response.isSuccessful){
             if (response.body() != null){
                 return Resource.succes(response.body()!!)
             }

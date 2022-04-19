@@ -7,9 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.google.gson.Gson
 import com.mb.advlab.databinding.FragmentSignupBinding
-import com.mb.advlab.model.BaseModel
+import com.mb.advlab.model.responses.BaseModel
 import com.mb.advlab.model.SignupRequest
 import com.mb.advlab.utils.Resource
 
@@ -37,6 +38,15 @@ class SignupFragment : Fragment() {
         binding.signButton.setOnClickListener {
             sendSignReq()
         }
+
+        navigateLogin()
+    }
+
+    private fun navigateLogin() {
+        binding.loginTextButton.setOnClickListener {
+            val action = SignupFragmentDirections.actionSignupFragmentToLoginFragment()
+            findNavController().navigate(action)
+        }
     }
 
     private fun sendSignReq() {
@@ -53,7 +63,7 @@ class SignupFragment : Fragment() {
 
     private fun onFail(data: String?) {
         val gson = Gson()
-        val a = gson.fromJson(data,BaseModel::class.java)
+        val a = gson.fromJson(data, BaseModel::class.java)
 
         Log.i("message", data!!)
         Log.i("message", a.responseBody!!)

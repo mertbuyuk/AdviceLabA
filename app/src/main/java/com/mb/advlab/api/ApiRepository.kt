@@ -1,5 +1,6 @@
 package com.mb.advlab.api
 
+import com.mb.advlab.model.LoginRequest
 import com.mb.advlab.model.SignupRequest
 import com.mb.advlab.utils.networkOperation
 import javax.inject.Inject
@@ -11,4 +12,9 @@ class ApiRepository @Inject constructor(private val remoteDataSource: RemoteData
             remoteDataSource.signRequest(signupRequest)
         }
     )
+
+    fun loginRequest(loginRequest: LoginRequest) = networkOperation  (
+        call = {
+            remoteDataSource.loginRequest(loginRequest)
+        })
 }
