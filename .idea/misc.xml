@@ -5,10 +5,18 @@
       <map>
         <entry key="..\:/Users/mert.buyuk/AndroidStudioProjects/AdviceLabA/app/src/main/res/drawable/bg_app.xml" value="0.2846153846153846" />
         <entry key="..\:/Users/mert.buyuk/AndroidStudioProjects/AdviceLabA/app/src/main/res/drawable/bg_buttons.xml" value="0.2846153846153846" />
+        <entry key="..\:/Users/mert.buyuk/AndroidStudioProjects/AdviceLabA/app/src/main/res/drawable/eye_24.xml" value="0.2890625" />
+        <entry key="..\:/Users/mert.buyuk/AndroidStudioProjects/AdviceLabA/app/src/main/res/drawable/favorite_24.xml" value="0.2890625" />
+        <entry key="..\:/Users/mert.buyuk/AndroidStudioProjects/AdviceLabA/app/src/main/res/drawable/home_24.xml" value="0.2890625" />
+        <entry key="..\:/Users/mert.buyuk/AndroidStudioProjects/AdviceLabA/app/src/main/res/drawable/ic_baseline_bookmark_24.xml" value="0.2890625" />
+        <entry key="..\:/Users/mert.buyuk/AndroidStudioProjects/AdviceLabA/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.2890625" />
+        <entry key="..\:/Users/mert.buyuk/AndroidStudioProjects/AdviceLabA/app/src/main/res/drawable/search_24.xml" value="0.2890625" />
         <entry key="..\:/Users/mert.buyuk/AndroidStudioProjects/AdviceLabA/app/src/main/res/layout/activity_main.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/mert.buyuk/AndroidStudioProjects/AdviceLabA/app/src/main/res/layout/bg_app.xml" value="0.1875" />
         <entry key="..\:/Users/mert.buyuk/AndroidStudioProjects/AdviceLabA/app/src/main/res/layout/fragment_login.xml" value="0.33" />
+        <entry key="..\:/Users/mert.buyuk/AndroidStudioProjects/AdviceLabA/app/src/main/res/layout/fragment_profile.xml" value="0.25" />
         <entry key="..\:/Users/mert.buyuk/AndroidStudioProjects/AdviceLabA/app/src/main/res/layout/fragment_signup.xml" value="0.25885416666666666" />
+        <entry key="..\:/Users/mert.buyuk/AndroidStudioProjects/AdviceLabA/app/src/main/res/layout/item_film.xml" value="0.2346014492753623" />
       </map>
     </option>
   </component>

@@ -9,4 +9,6 @@
     <string name="alreadyHave">Already have an account? Login here.</string>
     <string name="name">Userame</string>
     <string name="register">Register</string>
+    <string name="following">Following</string>
+    <string name="films">Films</string>
 </resources>

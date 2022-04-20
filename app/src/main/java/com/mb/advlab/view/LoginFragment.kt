@@ -12,6 +12,7 @@ import com.mb.advlab.databinding.FragmentLoginBinding
 import com.mb.advlab.model.LoginRequest
 import com.mb.advlab.model.responses.LoginResponse
 import com.mb.advlab.utils.Resource
+import com.mb.advlab.utils.SharedPrefManager
 import com.mb.advlab.viewmodel.login.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -20,6 +21,7 @@ class LoginFragment : Fragment() {
 
     private lateinit var binding : FragmentLoginBinding
     private val viewModel : LoginViewModel by viewModels()
+    private val sharedPrefManager = SharedPrefManager()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -60,7 +62,11 @@ class LoginFragment : Fragment() {
     }
 
     private fun onSucces(data: LoginResponse?) {
+        sharedPrefManager.setSharedPreference(requireContext(),"access_token",data?.responseBody?.jwt)
+        sharedPrefManager.setSharedPreference(requireContext(),"user_id",data?.responseBody?.id.toString())
 
+        val action = LoginFragmentDirections.actionLoginFragmentToProfileFragment()
+        findNavController().navigate(action)
         Log.i("aaaa",data?.responseBody!!.jwt)
     }
 }

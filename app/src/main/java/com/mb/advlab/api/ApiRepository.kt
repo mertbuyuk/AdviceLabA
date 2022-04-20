@@ -17,4 +17,16 @@ class ApiRepository @Inject constructor(private val remoteDataSource: RemoteData
         call = {
             remoteDataSource.loginRequest(loginRequest)
         })
+
+    fun getFolloweds(token : String, id : Long) = networkOperation(
+        call = {
+            remoteDataSource.getFolloweds(token, id)
+        }
+    )
+
+    fun getFollowers(token : String, id : Long) = networkOperation(
+        call = {
+            remoteDataSource.getFollowers(token, id)
+        }
+    )
 }
