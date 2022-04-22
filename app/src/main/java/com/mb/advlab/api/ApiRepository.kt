@@ -29,4 +29,10 @@ class ApiRepository @Inject constructor(private val remoteDataSource: RemoteData
             remoteDataSource.getFollowers(token, id)
         }
     )
+
+    fun getCounts(token : String, id : Long) = networkOperation(
+        call = {
+            remoteDataSource.getCounts(token, id)
+        }
+    )
 }

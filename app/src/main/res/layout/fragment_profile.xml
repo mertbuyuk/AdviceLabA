@@ -24,11 +24,12 @@
         android:id="@+id/following"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:text="323\nFollowing"
         android:textAlignment="center"
         android:textColor="#DCD6F7"
         android:textSize="18sp"
-        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toStartOf="@+id/usernameTxt"
         app:layout_constraintStart_toStartOf="@+id/profileImage"
         app:layout_constraintTop_toBottomOf="@+id/usernameTxt" />
 
@@ -48,12 +49,13 @@
         android:id="@+id/follower"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="323\nFollower"
+        android:layout_marginTop="24dp"
+        android:text="0\nFollower"
         android:textAlignment="center"
         android:textColor="#DCD6F7"
-        android:layout_marginTop="24dp"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="@+id/profileImage"
+        app:layout_constraintStart_toEndOf="@+id/usernameTxt"
         app:layout_constraintTop_toBottomOf="@+id/usernameTxt" />
 
     <androidx.appcompat.widget.AppCompatImageView

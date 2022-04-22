@@ -16,4 +16,6 @@ class ProfileViewModel @Inject constructor(private val apiRepository: ApiReposit
     fun getFolloweds(token : String, id : Long) = apiRepository.getFolloweds(token, id)
 
     fun getFollowers(token : String, id : Long) = apiRepository.getFolloweds(token, id)
+
+    fun getCounts(token : String, id : Long) = apiRepository.getCounts(token, id)
 }

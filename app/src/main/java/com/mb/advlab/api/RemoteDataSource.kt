@@ -22,4 +22,8 @@ class RemoteDataSource @Inject constructor(private val advLabService: AdvLabServ
     suspend fun getFollowers(token : String, id :Long) = getResult {
         advLabService.getFollowerList(token, id)
     }
+
+    suspend fun getCounts(token : String, id :Long) = getResult {
+        advLabService.getCount(token, id)
+    }
 }

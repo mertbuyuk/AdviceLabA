@@ -1,7 +1,5 @@
 package com.mb.advlab.model.responses
 
-
-
 data class LoginResponse(
     val message : String,
     val reason :String,
