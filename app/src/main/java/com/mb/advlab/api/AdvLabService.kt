@@ -29,6 +29,6 @@ interface AdvLabService {
     suspend fun getCount(@Header("Authorization") token : String, @Path("id") id : Long) : Response<GetCount>
 
     @GET("user/getPostById/{id}")
-    suspend fun getUsersPost(@Header("Authorization") token : String, @Path("id") id : Long) : Response<PostResponse>
+    suspend fun getUsersPost(@Header("Authorization") token : String, @Path("id") id : Long) : Response<ResponsePost>
 
 }

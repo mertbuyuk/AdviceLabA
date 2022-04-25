@@ -11,7 +11,7 @@ import com.mb.advlab.adapters.PostAdapter
 import com.mb.advlab.databinding.FragmentProfileBinding
 import com.mb.advlab.model.responses.Followeds
 import com.mb.advlab.model.responses.GetCount
-import com.mb.advlab.model.responses.PostResponse
+import com.mb.advlab.model.responses.ResponsePost
 
 import com.mb.advlab.utils.Resource
 import com.mb.advlab.utils.SharedPrefManager
@@ -57,8 +57,9 @@ class ProfileFragment : Fragment() {
         })
     }
 
-    private fun onSuccesGetPost(data: PostResponse?) {
+    private fun onSuccesGetPost(data: ResponsePost?) {
 
+        adapter.submitList(data!!.responseBody)
         Log.i("ss","sssssasdsad")
     }
 
