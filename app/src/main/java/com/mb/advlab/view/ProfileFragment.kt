@@ -7,9 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import com.mb.advlab.adapters.PostAdapter
 import com.mb.advlab.databinding.FragmentProfileBinding
 import com.mb.advlab.model.responses.Followeds
 import com.mb.advlab.model.responses.GetCount
+import com.mb.advlab.model.responses.PostResponse
 
 import com.mb.advlab.utils.Resource
 import com.mb.advlab.utils.SharedPrefManager
@@ -22,6 +24,8 @@ class ProfileFragment : Fragment() {
     private lateinit var binding : FragmentProfileBinding
     private val viewModel : ProfileViewModel by viewModels()
     private val sharedPrefManager = SharedPrefManager()
+
+    private val adapter = PostAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,7 +41,25 @@ class ProfileFragment : Fragment() {
         //getUserRelations(token,id)
         val token = sharedPrefManager.getSharedPreference(requireContext(),"access_token",null)
         val id = sharedPrefManager.getSharedPreference(requireContext(),"user_id",null)
+
+        binding.recyclerView.adapter = adapter
+
         getCounts(token,id)
+
+        getUserPosts(token,id)
+    }
+
+    private fun getUserPosts(token: String?, id: String?) {
+        viewModel.getUsersPost(token!!, id!!.toLong()).observe(viewLifecycleOwner,{
+            when(it.status){
+                Resource.Status.SUCCES -> onSuccesGetPost(it.data)
+            }
+        })
+    }
+
+    private fun onSuccesGetPost(data: PostResponse?) {
+
+        Log.i("ss","sssssasdsad")
     }
 
     private fun getCounts(token: String?, id: String?) {

@@ -2,7 +2,7 @@ package com.mb.advlab.viewmodel.login
 
 import androidx.lifecycle.ViewModel
 import com.mb.advlab.api.ApiRepository
-import com.mb.advlab.model.LoginRequest
+import com.mb.advlab.model.request.LoginRequest
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

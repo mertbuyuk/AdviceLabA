@@ -11,7 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.google.gson.Gson
 import com.mb.advlab.databinding.FragmentSignupBinding
 import com.mb.advlab.model.responses.BaseModel
-import com.mb.advlab.model.SignupRequest
+import com.mb.advlab.model.request.SignupRequest
 import com.mb.advlab.utils.Resource
 
 import com.mb.advlab.viewmodel.signup.SignupViewModel

@@ -7,7 +7,7 @@
     android:layout_marginStart="8dp"
     android:layout_marginTop="8dp"
     android:background="@drawable/bg_buttons"
-    android:backgroundTint="#99A799"
+    android:backgroundTint="#e0e0e0"
     >
 
     <androidx.appcompat.widget.AppCompatImageView
@@ -26,7 +26,7 @@
         android:text="@string/alreadyHave"
         android:layout_marginTop="16dp"
         android:textSize="16sp"
-        android:textColor="#3A3845"
+        android:textColor="@color/black"
         android:layout_marginStart="16dp"
         android:maxLines="2"
         android:ellipsize="end"

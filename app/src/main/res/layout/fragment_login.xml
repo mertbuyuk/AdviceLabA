@@ -30,7 +30,8 @@
         android:paddingStart="32dp"
         android:paddingEnd="32dp"
         android:layout_marginTop="64dp"
-        android:textColorHint="#DCD6F7"
+        android:textColorHint="@color/black"
+        app:hintTextColor="@color/black"
         app:boxStrokeColor="#DCD6F7"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,7 +40,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#DCD6F7"
+            android:textColor="@color/black"
+            android:background="@color/fieldbg"
             />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -50,22 +52,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/password"
-        android:textColorHint="#DCD6F7"
-        app:boxStrokeColor="#DCD6F7"
+        android:textColorHint="@color/black"
+        app:boxStrokeColor="@color/black"
+        app:hintTextColor="@color/black"
         android:paddingStart="32dp"
         android:paddingEnd="32dp"
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:endIconMode="password_toggle"
-        app:endIconTint="#DCD6F7"
+        app:endIconTint="@color/black"
         app:layout_constraintTop_toBottomOf="@+id/loginEmailTxt">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
-            android:textColor="#DCD6F7"
+            android:textColor="@color/black"
+            android:background="@color/fieldbg"
             />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -77,6 +81,7 @@
         android:layout_marginBottom="64dp"
         android:background="@drawable/bg_buttons"
         android:text="@string/login"
+        android:textColor="#FCFCFC"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -89,7 +94,7 @@
         android:layout_height="wrap_content"
         android:text="@string/dontyouHaveAnAcc"
         android:layout_marginTop="8dp"
-        android:textColor="#DCD6F7"
+        android:textColor="@color/black"
         android:textSize="10sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

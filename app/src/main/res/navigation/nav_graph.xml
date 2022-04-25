@@ -3,14 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/loginFragment"
+    >
+
     <fragment
         android:id="@+id/signupFragment"
         android:name="com.mb.advlab.view.SignupFragment"
-        android:label="SignupFragment" >
+        android:label="SignupFragment"
+        >
         <action
             android:id="@+id/action_signupFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            app:destination="@id/loginFragment"
+            />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -18,7 +22,8 @@
         android:label="LoginFragment" >
         <action
             android:id="@+id/action_loginFragment_to_signupFragment"
-            app:destination="@id/signupFragment" />
+            app:destination="@id/signupFragment"
+            />
         <action
             android:id="@+id/action_loginFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
@@ -26,18 +31,17 @@
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.mb.advlab.view.ProfileFragment"
-        android:label="ProfileFragment" >
-        <action
-            android:id="@+id/action_profileFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+        android:label="ProfileFragment"
+        >
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.mb.advlab.view.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
-        <action
-            android:id="@+id/action_homeFragment_to_profileFragment"
-            app:destination="@id/profileFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/sharePostFragment"
+        android:name="com.mb.advlab.view.SharePostFragment"
+        android:label="SharePostFragment" />
 </navigation>

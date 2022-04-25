@@ -1,4 +1,4 @@
-package com.mb.advlab.model
+package com.mb.advlab.model.request
 
 data class SignupRequest(
     private val firstName : String,

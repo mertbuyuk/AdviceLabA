@@ -1,7 +1,8 @@
 package com.mb.advlab.api
 
-import com.mb.advlab.model.LoginRequest
-import com.mb.advlab.model.SignupRequest
+import com.mb.advlab.model.request.LoginRequest
+import com.mb.advlab.model.request.SharePost
+import com.mb.advlab.model.request.SignupRequest
 import com.mb.advlab.utils.BaseDataSource
 import javax.inject.Inject
 
@@ -25,5 +26,13 @@ class RemoteDataSource @Inject constructor(private val advLabService: AdvLabServ
 
     suspend fun getCounts(token : String, id :Long) = getResult {
         advLabService.getCount(token, id)
+    }
+
+    suspend fun sharePost(token : String, id : Long, sharePost : SharePost) = getResult {
+        advLabService.sharePost(token, id,sharePost)
+    }
+
+    suspend fun getUsersPost(token : String, id : Long) = getResult {
+        advLabService.getUsersPost(token, id)
     }
 }

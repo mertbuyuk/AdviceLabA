@@ -7,7 +7,6 @@ import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
@@ -38,23 +37,47 @@ class MainActivity : AppCompatActivity() {
                 R.id.homeFragment
             )
         )
+
+        binding.fab.setOnClickListener {
+            navController.navigate(R.id.sharePostFragment)
+        }
+
         setupActionBarWithNavController(navController,appBarConfiguration)
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
                 R.id.signupFragment -> hideBottomNav()
                 R.id.loginFragment -> hideBottomNav()
+                R.id.sharePostFragment -> {
+                    hideBottomNav()
+                    supportActionBar?.show()
+                }
                 else -> showBottomNav()
             }
         }
     }
 
     private fun showBottomNav() {
-        binding.navView.visibility = View.VISIBLE
-
+        binding.framecontainer.visibility = View.VISIBLE
+        supportActionBar?.hide()
     }
 
     private fun hideBottomNav() {
-        binding.navView.visibility  = View.GONE
+        binding.framecontainer.visibility  = View.GONE
+        supportActionBar?.hide()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId === android.R.id.home) {
+            //Title bar back press triggers onBackPressed()
+            onBackPressed()
+            return true
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }

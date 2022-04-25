@@ -7,7 +7,7 @@
     <item android:id="@+id/searchFragment"
         android:title="Search"
         android:icon="@drawable/search_24"/>
-    <item android:id="@+id/mplaceholder"
+    <item android:id="@+id/mpost"
         android:title=""
         />
     <item android:id="@+id/commentsFragment"

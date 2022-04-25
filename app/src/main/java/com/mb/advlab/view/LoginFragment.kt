@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.mb.advlab.databinding.FragmentLoginBinding
-import com.mb.advlab.model.LoginRequest
+import com.mb.advlab.model.request.LoginRequest
 import com.mb.advlab.model.responses.LoginResponse
 import com.mb.advlab.utils.Resource
 import com.mb.advlab.utils.SharedPrefManager

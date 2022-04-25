@@ -1,9 +1,8 @@
 package com.mb.advlab.viewmodel.signup
 
-import android.view.View
 import androidx.lifecycle.ViewModel
 import com.mb.advlab.api.ApiRepository
-import com.mb.advlab.model.SignupRequest
+import com.mb.advlab.model.request.SignupRequest
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
