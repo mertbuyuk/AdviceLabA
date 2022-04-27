@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.mb.advlab.adapters.PostAdapter
 import com.mb.advlab.databinding.FragmentProfileBinding
 import com.mb.advlab.model.responses.Followeds
@@ -45,8 +46,16 @@ class ProfileFragment : Fragment() {
         binding.recyclerView.adapter = adapter
 
         getCounts(token,id)
-
         getUserPosts(token,id)
+        getFollowedDetails(token,id)
+    }
+
+    private fun getFollowedDetails(token: String?, id: String?) {
+        binding.following.setOnClickListener {
+
+            val action = ProfileFragmentDirections.actionProfileFragmentToFollowedDetailsFragment(id!!.toLong())
+            findNavController().navigate(action)
+        }
     }
 
     private fun getUserPosts(token: String?, id: String?) {
