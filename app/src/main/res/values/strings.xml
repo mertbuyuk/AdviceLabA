@@ -16,4 +16,5 @@
     <string name="puan">Rate</string>
     <string name="desc">Write your comments about the movie..</string>
     <string name="share">Share</string>
+    <string name="follower">Follower</string>
 </resources>

@@ -52,6 +52,14 @@ class MainActivity : AppCompatActivity() {
                     hideBottomNav()
                     supportActionBar?.show()
                 }
+                R.id.followedDetailsFragment ->{
+                    hideBottomNav()
+                    supportActionBar?.show()
+                }
+                R.id.followerFragment->{
+                    hideBottomNav()
+                    supportActionBar?.show()
+                }
                 else -> showBottomNav()
             }
         }

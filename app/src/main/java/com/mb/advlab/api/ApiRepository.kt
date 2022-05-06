@@ -1,5 +1,6 @@
 package com.mb.advlab.api
 
+import com.mb.advlab.model.request.FollowUnRequest
 import com.mb.advlab.model.request.LoginRequest
 import com.mb.advlab.model.request.SharePost
 import com.mb.advlab.model.request.SignupRequest
@@ -47,6 +48,18 @@ class ApiRepository @Inject constructor(private val remoteDataSource: RemoteData
     fun getUsersPost(token : String, id : Long) = networkOperation(
         call = {
             remoteDataSource.getUsersPost(token, id)
+        }
+    )
+
+    fun followById(token : String, fromTo : FollowUnRequest) = networkOperation (
+        call = {
+            remoteDataSource.followById(token, fromTo)
+        }
+            )
+
+    fun unfollowById(token: String, fromTo: FollowUnRequest) = networkOperation(
+        call = {
+            remoteDataSource.unfollowById(token, fromTo)
         }
     )
 }

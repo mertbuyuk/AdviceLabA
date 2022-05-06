@@ -48,6 +48,15 @@ class ProfileFragment : Fragment() {
         getCounts(token,id)
         getUserPosts(token,id)
         getFollowedDetails(token,id)
+        getFollowerDetails(token,id)
+    }
+
+    private fun getFollowerDetails(token: String?, id: String?) {
+        binding.follower.setOnClickListener {
+
+            val action = ProfileFragmentDirections.actionProfileFragmentToFollowerFragment(id!!.toLong())
+            findNavController().navigate(action)
+        }
     }
 
     private fun getFollowedDetails(token: String?, id: String?) {
@@ -69,7 +78,6 @@ class ProfileFragment : Fragment() {
     private fun onSuccesGetPost(data: ResponsePost?) {
 
         adapter.submitList(data!!.responseBody)
-        Log.i("ss","sssssasdsad")
     }
 
     private fun getCounts(token: String?, id: String?) {
@@ -83,16 +91,6 @@ class ProfileFragment : Fragment() {
     private fun onSuccesGetCount(responseBody: GetCount) {
         binding.follower.text = "${responseBody.responseBody.follower.toString()}\nFollower"
         binding.following.text =  "${responseBody.responseBody.following.toString()}\nFollowing"
-    }
-
-    private fun getUserRelations(token: String?, id: String?) {
-
-        viewModel.getFolloweds(token!!,id!!.toLong()).observe(viewLifecycleOwner,
-            {
-                when(it.status){
-                    Resource.Status.SUCCES -> onSucces(it.data!!)
-                }
-            })
     }
 
     private fun onSucces(data: Followeds) {

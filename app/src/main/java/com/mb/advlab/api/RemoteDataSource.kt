@@ -1,5 +1,6 @@
 package com.mb.advlab.api
 
+import com.mb.advlab.model.request.FollowUnRequest
 import com.mb.advlab.model.request.LoginRequest
 import com.mb.advlab.model.request.SharePost
 import com.mb.advlab.model.request.SignupRequest
@@ -34,5 +35,12 @@ class RemoteDataSource @Inject constructor(private val advLabService: AdvLabServ
 
     suspend fun getUsersPost(token : String, id : Long) = getResult {
         advLabService.getUsersPost(token, id)
+    }
+    suspend fun followById(token : String, fromTo : FollowUnRequest) = getResult {
+        advLabService.followById(token, fromTo)
+    }
+
+    suspend fun unfollowById(token : String, fromTo : FollowUnRequest) = getResult {
+        advLabService.deleteById(token, fromTo)
     }
 }

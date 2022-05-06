@@ -36,6 +36,10 @@
         <action
             android:id="@+id/action_profileFragment_to_followedDetailsFragment"
             app:destination="@id/followedDetailsFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_followerFragment"
+            app:destination="@id/followerFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
@@ -52,6 +56,14 @@
         android:name="com.mb.advlab.view.relationdetails.FollowedDetailsFragment"
         android:label="fragment_followed_details"
         tools:layout="@layout/fragment_followed_details" >
+        <argument
+            android:name="id"
+            app:argType="long" />
+    </fragment>
+    <fragment
+        android:id="@+id/followerFragment"
+        android:name="com.mb.advlab.view.relationdetails.FollowerFragment"
+        android:label="FollowerFragment" >
         <argument
             android:name="id"
             app:argType="long" />
