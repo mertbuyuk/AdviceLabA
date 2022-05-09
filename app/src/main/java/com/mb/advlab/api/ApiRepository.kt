@@ -1,10 +1,9 @@
 package com.mb.advlab.api
 
-import com.mb.advlab.model.request.FollowUnRequest
-import com.mb.advlab.model.request.LoginRequest
-import com.mb.advlab.model.request.SharePost
-import com.mb.advlab.model.request.SignupRequest
+import com.mb.advlab.model.request.*
 import com.mb.advlab.utils.networkOperation
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import javax.inject.Inject
 
 class ApiRepository @Inject constructor(private val remoteDataSource: RemoteDataSource) {
@@ -60,6 +59,18 @@ class ApiRepository @Inject constructor(private val remoteDataSource: RemoteData
     fun unfollowById(token: String, fromTo: FollowUnRequest) = networkOperation(
         call = {
             remoteDataSource.unfollowById(token, fromTo)
+        }
+    )
+
+    fun saveUserPhoto(token: String, id : Long ,photoRequest:  MultipartBody.Part) = networkOperation(
+        call = {
+            remoteDataSource.saveUserPhoto(token, id, photoRequest)
+        }
+    )
+
+    fun searchUser(token: String, keyword: String) = networkOperation(
+        call = {
+            remoteDataSource.searchUsers(token, keyword)
         }
     )
 }

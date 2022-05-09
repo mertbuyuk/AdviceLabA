@@ -1,11 +1,10 @@
 package com.mb.advlab.api
 
-import com.mb.advlab.model.request.FollowUnRequest
-import com.mb.advlab.model.request.LoginRequest
-import com.mb.advlab.model.request.SharePost
-import com.mb.advlab.model.request.SignupRequest
+import com.mb.advlab.model.request.*
 import com.mb.advlab.model.responses.*
 import dagger.hilt.internal.GeneratedEntryPoint
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -26,6 +25,10 @@ interface AdvLabService {
     @POST("user/deleteById")
     suspend fun deleteById(@Header("Authorization") token : String, @Body fromTo : FollowUnRequest) : Response<BaseModel>
 
+    @Multipart
+    @POST("user/save/photo/{id}")
+    suspend fun saveUserPhoto(@Header("Authorization") token : String, @Path("id") id : Long, @Part file :  MultipartBody.Part) : Response<BaseModel>
+
     @GET("user/getFollowedList/{id}")
     suspend fun getFollowedList(@Header("Authorization") token : String, @Path("id") id : Long) : Response<Followeds>
 
@@ -38,7 +41,6 @@ interface AdvLabService {
     @GET("user/getPostById/{id}")
     suspend fun getUsersPost(@Header("Authorization") token : String, @Path("id") id : Long) : Response<ResponsePost>
 
-
-
-
+    @GET("user/searchUsers")
+    suspend fun searchUser(@Header("Authorization") token : String, @Query("keyword") keyword : String) : Response<Followeds>
 }

@@ -1,11 +1,14 @@
 package com.mb.advlab.view
 
+import android.content.Context
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.mb.advlab.adapters.PostAdapter
@@ -18,6 +21,19 @@ import com.mb.advlab.utils.Resource
 import com.mb.advlab.utils.SharedPrefManager
 import com.mb.advlab.viewmodel.profile.ProfileViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import android.graphics.BitmapFactory
+
+import android.graphics.Bitmap
+import android.os.Build
+import androidx.annotation.RequiresApi
+import com.mb.advlab.model.request.PhotoRequest
+import com.mb.advlab.utils.UriHelper
+import okhttp3.MediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import java.io.File
+import okhttp3.RequestBody
+
 
 @AndroidEntryPoint
 class ProfileFragment : Fragment() {
@@ -27,6 +43,17 @@ class ProfileFragment : Fragment() {
     private val sharedPrefManager = SharedPrefManager()
 
     private val adapter = PostAdapter()
+    private val uriHelper = UriHelper()
+
+    private lateinit var token : String
+    private lateinit var id : String
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private val pickImageFromGallery = registerForActivityResult(ActivityResultContracts.GetContent()){
+        it?.let {
+            uploadPhoto(it)
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,19 +63,49 @@ class ProfileFragment : Fragment() {
         return binding.root
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         //getUserRelations(token,id)
-        val token = sharedPrefManager.getSharedPreference(requireContext(),"access_token",null)
-        val id = sharedPrefManager.getSharedPreference(requireContext(),"user_id",null)
+        token = sharedPrefManager.getSharedPreference(requireContext(), "access_token", null)!!
+        id = sharedPrefManager.getSharedPreference(requireContext(), "user_id", null)!!
 
         binding.recyclerView.adapter = adapter
 
-        getCounts(token,id)
-        getUserPosts(token,id)
-        getFollowedDetails(token,id)
-        getFollowerDetails(token,id)
+        binding.profileImage.setOnClickListener {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                pickImageFromGallery.launch("image/*")
+            }
+        }
+
+        getCounts(token, id)
+        getUserPosts(token, id)
+        getFollowedDetails(token, id)
+        getFollowerDetails(token, id)
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun uploadPhoto(uri: Uri) {
+        val imageStream = requireContext().contentResolver.openInputStream(uri);
+        val getBitmap = BitmapFactory.decodeStream(imageStream)
+
+        val imageString = uriHelper.convertToString(getBitmap)
+
+        val photoRequest = PhotoRequest(id.toLong(),imageString)
+
+        val file = File(uri.path);
+        val photo = RequestBody.create("application/image".toMediaTypeOrNull(),file)
+
+        val body = MultipartBody.Part.createFormData("image",
+        file.name,photo)
+
+        viewModel.saveUserPhoto(token,id.toLong(),body).observe(viewLifecycleOwner,{
+            when(it.status){
+                Resource.Status.SUCCES->Log.i("onSucces",it.data!!.responseBody)
+            }
+        })
+
     }
 
     private fun getFollowerDetails(token: String?, id: String?) {

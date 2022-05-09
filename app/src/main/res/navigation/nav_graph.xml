@@ -6,6 +6,13 @@
     app:startDestination="@id/loginFragment"
     >
 
+    <action
+        android:id="@+id/toSearchFragment"
+        app:destination="@id/searchFragment"
+        app:popUpToInclusive="true"
+        app:popUpTo="@id/searchFragment"
+        />
+
     <fragment
         android:id="@+id/signupFragment"
         android:name="com.mb.advlab.view.SignupFragment"
@@ -60,6 +67,7 @@
             android:name="id"
             app:argType="long" />
     </fragment>
+
     <fragment
         android:id="@+id/followerFragment"
         android:name="com.mb.advlab.view.relationdetails.FollowerFragment"
@@ -68,4 +76,16 @@
             android:name="id"
             app:argType="long" />
     </fragment>
+
+    <fragment
+        android:id="@+id/exploreFragment"
+        android:name="com.mb.advlab.view.explore.ExploreFragment"
+        android:label="fragment_explore"
+        tools:layout="@layout/fragment_explore" >
+    </fragment>
+
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.mb.advlab.view.explore.SearchFragment"
+        android:label="SearchFragment" />
 </navigation>

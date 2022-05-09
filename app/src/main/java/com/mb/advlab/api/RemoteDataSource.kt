@@ -1,10 +1,9 @@
 package com.mb.advlab.api
 
-import com.mb.advlab.model.request.FollowUnRequest
-import com.mb.advlab.model.request.LoginRequest
-import com.mb.advlab.model.request.SharePost
-import com.mb.advlab.model.request.SignupRequest
+import com.mb.advlab.model.request.*
 import com.mb.advlab.utils.BaseDataSource
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import javax.inject.Inject
 
 class RemoteDataSource @Inject constructor(private val advLabService: AdvLabService) : BaseDataSource() {
@@ -42,5 +41,13 @@ class RemoteDataSource @Inject constructor(private val advLabService: AdvLabServ
 
     suspend fun unfollowById(token : String, fromTo : FollowUnRequest) = getResult {
         advLabService.deleteById(token, fromTo)
+    }
+
+    suspend fun saveUserPhoto(token : String,id : Long, photoRequest :  MultipartBody.Part) = getResult {
+        advLabService.saveUserPhoto(token, id,photoRequest)
+    }
+
+    suspend fun searchUsers(token : String, keyword : String) = getResult {
+        advLabService.searchUser(token, keyword)
     }
 }

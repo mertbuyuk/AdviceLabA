@@ -1,6 +1,7 @@
 package com.mb.advlab.adapters
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -10,9 +11,10 @@ import com.mb.advlab.R
 import com.mb.advlab.databinding.ItemRelationsBinding
 import com.mb.advlab.model.responses.FolloweDDetails
 import com.mb.advlab.model.responses.PostResponse
+import kotlin.concurrent.fixedRateTimer
 
 class RelationAdapters : ListAdapter<FolloweDDetails, RelationAdapters.RelationViewHolder>(DIFF_CALLBACK) {
-
+    var flag : Int = 0
     private var onClick : IOnClick? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RelationViewHolder {
@@ -21,38 +23,37 @@ class RelationAdapters : ListAdapter<FolloweDDetails, RelationAdapters.RelationV
     }
 
     class RelationViewHolder(private val itemBinding : ItemRelationsBinding) : RecyclerView.ViewHolder(itemBinding.root) {
+
+        val btn = itemBinding.outlinedButton
+
         fun bind(item : FolloweDDetails,click:IOnClick?){
 
             itemBinding.nameUser.text = item.name
 
             itemBinding.outlinedButton.setOnClickListener {
-                if (item.status ==1){
-                    item.status = 0
+                if (item.status ==0){
+                    item.status = 1
                     itemBinding.outlinedButton.text = "Takip et"
                 }
-                else{
-                    item.status = 1
-                    itemBinding.outlinedButton.text = "Takibi bırak"
+                else if (item.status == 1){
+                    item.status = 0
+                    itemBinding.outlinedButton.text = "Takip ediliyor"
                 }
                 click?.onClick(item)
-
-
             }
         }
     }
 
     override fun onBindViewHolder(holder: RelationViewHolder, position: Int) {
         holder.bind(getItem(position),onClick)
+
+        if (flag == 1){
+            holder.btn.visibility = View.GONE
+        }
     }
 
     fun addListener(click: IOnClick?) {
         this.onClick = click
-    }
-
-    fun getPositionByItem(item: FolloweDDetails) = currentList.indexOf(item)
-
-    fun followText(){
-
     }
 
     companion object {

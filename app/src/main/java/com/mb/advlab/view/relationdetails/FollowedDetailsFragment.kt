@@ -54,8 +54,8 @@ class FollowedDetailsFragment : Fragment() {
             override fun onClick(item: FolloweDDetails) {
 
                 when(item.status){
-                    1-> unfollow(token,id,item)
                     0-> follow(token,id,item)
+                    1-> unfollow(token,id,item)
                 }
             }
 
@@ -63,7 +63,16 @@ class FollowedDetailsFragment : Fragment() {
     }
 
     private fun follow(token: String?, fromId: Long, toId: FolloweDDetails) {
+        val fromTo = FollowUnRequest(fromId,toId.id)
+        viewModel.followById(token!!,fromTo).observe(viewLifecycleOwner,{
+            when(it.status){
+                Resource.Status.SUCCES -> followSucces(toId)
+            }
+        })
+    }
 
+    private fun followSucces(toId: FolloweDDetails) {
+        Log.i("www","followsucces")
     }
 
     private fun unfollow(token: String?, from: Long, to: FolloweDDetails) {
