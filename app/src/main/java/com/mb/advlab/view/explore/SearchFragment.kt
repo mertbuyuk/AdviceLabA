@@ -1,11 +1,14 @@
 package com.mb.advlab.view.explore
 
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.ActionBar
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
 import com.mb.advlab.R
@@ -43,8 +46,18 @@ class SearchFragment : Fragment() {
         token = sharedPrefManager.getSharedPreference(requireContext(), "access_token", null)!!
         binding.searchedRec.adapter = adapter
         adapter.flag = 1
-        Log.i("tag","searchfrag")
+
         searchListener()
+        appbar()
+    }
+
+    private fun appbar() {
+        val actionBar: ActionBar? = (activity as AppCompatActivity?)!!.supportActionBar
+
+        actionBar?.setHomeButtonEnabled(true)
+        actionBar?.setDisplayHomeAsUpEnabled(true)
+        actionBar?.setBackgroundDrawable(ColorDrawable(resources.getColor(R.color.bgapp)))
+        actionBar?.show()
     }
 
     private fun searchListener() {

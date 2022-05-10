@@ -49,10 +49,14 @@ class ExploreFragment : Fragment() {
 
 
     private fun searchListener() {
+        binding.searchUser.setOnQueryTextFocusChangeListener(object : View.OnFocusChangeListener{
+            override fun onFocusChange(p0: View?, p1: Boolean) {
+             binding.searchUser.performClick()
+            }
+        })
         binding.searchUser.setOnClickListener {
             val action = ExploreFragmentDirections.toSearchFragment()
             findNavController().navigate(action)
-            Log.i("tag","done")
         }
     }
     }

@@ -1,6 +1,11 @@
 package com.mb.advlab.view
 
+import android.Manifest
+import android.app.Activity
 import android.content.Context
+import android.content.DialogInterface
+import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -25,7 +30,11 @@ import android.graphics.BitmapFactory
 
 import android.graphics.Bitmap
 import android.os.Build
+import android.provider.Settings
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AlertDialog
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.mb.advlab.model.request.PhotoRequest
 import com.mb.advlab.utils.UriHelper
 import okhttp3.MediaType
@@ -49,9 +58,21 @@ class ProfileFragment : Fragment() {
     private lateinit var id : String
 
     @RequiresApi(Build.VERSION_CODES.O)
-    private val pickImageFromGallery = registerForActivityResult(ActivityResultContracts.GetContent()){
+    private val pickImageFromGallery = registerForActivityResult( ActivityResultContracts.GetContent()){
         it?.let {
             uploadPhoto(it)
+        }}
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private val activityResultLauncher = registerForActivityResult(
+    ActivityResultContracts.RequestMultiplePermissions()) {result ->
+        var allAreGranted = true
+        for(b in result.values) {
+            allAreGranted = allAreGranted && b
+        }
+
+        if(allAreGranted) {
+            pickImageFromGallery.launch("image/*")
         }
     }
 
@@ -62,7 +83,6 @@ class ProfileFragment : Fragment() {
         binding = FragmentProfileBinding.inflate(inflater,container,false)
         return binding.root
     }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -75,7 +95,12 @@ class ProfileFragment : Fragment() {
 
         binding.profileImage.setOnClickListener {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                pickImageFromGallery.launch("image/*")
+                val appPerms = arrayOf(
+                    Manifest.permission.READ_EXTERNAL_STORAGE,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                )
+
+                activityResultLauncher.launch(appPerms)
             }
         }
 
@@ -92,17 +117,15 @@ class ProfileFragment : Fragment() {
 
         val imageString = uriHelper.convertToString(getBitmap)
 
-        val photoRequest = PhotoRequest(id.toLong(),imageString)
-
-        val file = File(uri.path);
+        val file = File(uriHelper.getPath(requireContext(),uri));
         val photo = RequestBody.create("application/image".toMediaTypeOrNull(),file)
 
-        val body = MultipartBody.Part.createFormData("image",
-        file.name,photo)
+       val body = MultipartBody.Part.createFormData("image", file.name,photo)
 
-        viewModel.saveUserPhoto(token,id.toLong(),body).observe(viewLifecycleOwner,{
+       viewModel.saveUserPhoto(token,id.toLong(),body).observe(viewLifecycleOwner,{
             when(it.status){
-                Resource.Status.SUCCES->Log.i("onSucces",it.data!!.responseBody)
+                Resource.Status.SUCCES->Log.i("onSucces","it.data!!.responseBody")
+//                else -> Log.i("else",it.data!!.responseBody)
             }
         })
 
@@ -154,4 +177,26 @@ class ProfileFragment : Fragment() {
 
         Log.i("data",data.responseBody.size.toString())
     }
+
+
+    //permission
+    private fun showPermissionDeniedDialog() {
+        AlertDialog.Builder(requireContext())
+            .setTitle("Permission Denied")
+            .setMessage("Permission is denied, Please allow permissions from App Settings.")
+            .setPositiveButton("App Settings",
+                DialogInterface.OnClickListener { dialogInterface, i ->
+                    // send to app settings if permission is denied permanently
+                    val intent = Intent()
+                    intent.action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
+                    val uri = Uri.fromParts("package", requireActivity().packageName, null)
+                    intent.data = uri
+                    startActivity(intent)
+                })
+            .setNegativeButton("Cancel",null)
+            .show()
+    }
+
+
+
 }
