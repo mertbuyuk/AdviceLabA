@@ -6,7 +6,7 @@ import android.util.Base64
 
 class ImageHelper {
 
-    fun stringToBitmap(encoded : String) : Bitmap{
+    fun stringToBitmap(encoded : String?) : Bitmap{
 
         val imageBytes = Base64.decode(encoded,0);
         return BitmapFactory.decodeByteArray(imageBytes,0,imageBytes.size)

@@ -143,7 +143,7 @@ class ProfileFragment : Fragment() {
 
        viewModel.saveUserPhoto(token,id.toLong(),body).observe(viewLifecycleOwner,{
             when(it.status){
-                Resource.Status.SUCCES->Log.i("onSucces","it.data!!.responseBody")
+                Resource.Status.SUCCES-> checkPhoto()
 //                else -> Log.i("else",it.data!!.responseBody)
             }
         })

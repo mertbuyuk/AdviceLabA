@@ -38,6 +38,7 @@ class FollowerFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        adapter.flag = 1
         followedActBar()
         binding.followerRec.adapter = adapter
         val token = sharedPrefManager.getSharedPreference(requireContext(),"access_token",null)

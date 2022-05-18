@@ -7,14 +7,17 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.mb.advlab.R
 import com.mb.advlab.databinding.ItemRelationsBinding
 import com.mb.advlab.model.responses.FolloweDDetails
 import com.mb.advlab.model.responses.PostResponse
+import com.mb.advlab.utils.ImageHelper
 import kotlin.concurrent.fixedRateTimer
 
 class RelationAdapters : ListAdapter<FolloweDDetails, RelationAdapters.RelationViewHolder>(DIFF_CALLBACK) {
     var flag : Int = 0
+
     private var onClick : IOnClick? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RelationViewHolder {
@@ -23,12 +26,21 @@ class RelationAdapters : ListAdapter<FolloweDDetails, RelationAdapters.RelationV
     }
 
     class RelationViewHolder(private val itemBinding : ItemRelationsBinding) : RecyclerView.ViewHolder(itemBinding.root) {
-
+        val imageHelper = ImageHelper()
         val btn = itemBinding.outlinedButton
 
         fun bind(item : FolloweDDetails,click:IOnClick?){
 
             itemBinding.nameUser.text = item.name
+
+            if(item.photo != null){
+                val img = imageHelper.stringToBitmap(item.photo)
+                Glide.with(itemBinding.root.context)
+                    .asBitmap()
+                    .load(img)
+                    .centerInside()
+                    .into(itemBinding.appCompatImageView2)
+            }
 
             itemBinding.outlinedButton.setOnClickListener {
                 if (item.status ==0){

@@ -9,5 +9,6 @@ data class Followeds(
 data class FolloweDDetails(
     val id : Long,
     val name : String,
+    val photo : String?,
     var status : Int = 1
 )
