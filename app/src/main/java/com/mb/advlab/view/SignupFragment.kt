@@ -66,7 +66,6 @@ class SignupFragment : Fragment() {
         val a = gson.fromJson(data, BaseModel::class.java)
 
         Log.i("message", data!!)
-        Log.i("message", a.responseBody!!)
     }
 
     private fun onSucces(data: BaseModel?) {

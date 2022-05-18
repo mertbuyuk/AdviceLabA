@@ -28,5 +28,9 @@ class ProfileViewModel @Inject constructor(private val apiRepository: ApiReposit
 
     fun unfollowById(token: String, fromTo: FollowUnRequest) = apiRepository.unfollowById(token, fromTo)
 
+    fun findById(token: String,id:Long) = apiRepository.findById(token, id)
+
     fun saveUserPhoto(token: String,id : Long, photoRequest: MultipartBody.Part) = apiRepository.saveUserPhoto(token,id, photoRequest)
+
+    fun getUserPhoto(token: String,id : Long) = apiRepository.getUserPhoto(token,id)
 }

@@ -68,9 +68,22 @@ class ApiRepository @Inject constructor(private val remoteDataSource: RemoteData
         }
     )
 
+
+    fun getUserPhoto(token: String, id : Long) = networkOperation(
+        call = {
+            remoteDataSource.getUserPhoto(token, id)
+        }
+    )
+
     fun searchUser(token: String, keyword: String) = networkOperation(
         call = {
             remoteDataSource.searchUsers(token, keyword)
+        }
+    )
+
+    fun findById(token: String, id: Long) = networkOperation(
+        call = {
+            remoteDataSource.findById(token, id)
         }
     )
 }

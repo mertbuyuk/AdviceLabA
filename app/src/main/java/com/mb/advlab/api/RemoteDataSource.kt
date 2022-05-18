@@ -50,4 +50,12 @@ class RemoteDataSource @Inject constructor(private val advLabService: AdvLabServ
     suspend fun searchUsers(token : String, keyword : String) = getResult {
         advLabService.searchUser(token, keyword)
     }
+
+    suspend fun findById(token : String,id : Long ) = getResult {
+        advLabService.findById(token, id)
+    }
+
+    suspend fun getUserPhoto(token : String,id : Long) = getResult {
+        advLabService.getUserPhoto(token, id)
+    }
 }

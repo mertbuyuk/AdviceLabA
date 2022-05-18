@@ -10,5 +10,6 @@ data class ResponseBody(
     val id : Long,
     val firstName : String,
     val email : String,
-    val jwt : String
+    val jwt : String,
+    var photo : String
 )

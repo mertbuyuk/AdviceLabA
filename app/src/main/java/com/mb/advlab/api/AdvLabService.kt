@@ -26,8 +26,14 @@ interface AdvLabService {
     suspend fun deleteById(@Header("Authorization") token : String, @Body fromTo : FollowUnRequest) : Response<BaseModel>
 
     @Multipart
-    @POST("user/save/photo/{id}")
+    @POST("user/savephoto/{id}")
     suspend fun saveUserPhoto(@Header("Authorization") token : String, @Path("id") id : Long, @Part file :  MultipartBody.Part) : Response<BaseModel>
+
+    @GET("user/getphoto/{id}")
+    suspend fun getUserPhoto(@Header("Authorization") token : String, @Path("id") id : Long) : Response<BaseModel>
+
+    @GET("findById/{id}")
+    suspend fun findById(@Header("Authorization") token : String, @Path("id") id : Long) : Response<LoginResponse>
 
     @GET("user/getFollowedList/{id}")
     suspend fun getFollowedList(@Header("Authorization") token : String, @Path("id") id : Long) : Response<Followeds>

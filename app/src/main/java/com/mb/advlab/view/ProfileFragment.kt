@@ -1,11 +1,8 @@
 package com.mb.advlab.view
 
 import android.Manifest
-import android.app.Activity
-import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -28,16 +25,14 @@ import com.mb.advlab.viewmodel.profile.ProfileViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import android.graphics.BitmapFactory
 
-import android.graphics.Bitmap
 import android.os.Build
 import android.provider.Settings
+import android.util.Base64
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-import com.mb.advlab.model.request.PhotoRequest
+import com.bumptech.glide.Glide
+import com.mb.advlab.utils.ImageHelper
 import com.mb.advlab.utils.UriHelper
-import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import java.io.File
@@ -56,6 +51,8 @@ class ProfileFragment : Fragment() {
 
     private lateinit var token : String
     private lateinit var id : String
+
+    private val imageHelper = ImageHelper()
 
     @RequiresApi(Build.VERSION_CODES.O)
     private val pickImageFromGallery = registerForActivityResult( ActivityResultContracts.GetContent()){
@@ -104,10 +101,32 @@ class ProfileFragment : Fragment() {
             }
         }
 
+        checkPhoto()
         getCounts(token, id)
         getUserPosts(token, id)
         getFollowedDetails(token, id)
         getFollowerDetails(token, id)
+    }
+
+    private fun checkPhoto() {
+        viewModel.getUserPhoto(token,id.toLong(),).observe(viewLifecycleOwner,{
+            when(it.status){
+                Resource.Status.SUCCES -> needLoad(it.data!!.responseBody)
+            }
+        }
+        )
+    }
+
+    private fun needLoad(responseBody: String) {
+
+        if (responseBody.isNotEmpty()){
+            val img = imageHelper.stringToBitmap(responseBody)
+            Glide.with(binding.root.context)
+                .asBitmap()
+                .load(img)
+                .centerInside()
+                .into(binding.profileImage)
+        }
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
