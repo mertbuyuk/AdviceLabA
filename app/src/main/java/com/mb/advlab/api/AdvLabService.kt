@@ -49,4 +49,7 @@ interface AdvLabService {
 
     @GET("user/searchUsers")
     suspend fun searchUser(@Header("Authorization") token : String, @Query("keyword") keyword : String) : Response<Followeds>
+
+    @GET("post/getPostById/{id}")
+    suspend fun getPostDetails(@Header("Authorization") token : String, @Path("id") id : Long) : Response<PostResponse>
 }

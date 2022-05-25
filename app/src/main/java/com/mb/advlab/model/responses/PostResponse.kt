@@ -8,5 +8,15 @@ data class ResponsePost(
 
 data class PostResponse (
     val id : Long,
-    val filmName : String
+    val type : FilmType,
+    val filmName : String,
+    val desc : String,
+    val likeCount : Int,
+    val unlikeCount : Int,
+    val genre : String
         )
+
+data class FilmType(
+    val id : Long,
+    val typeName : String
+)

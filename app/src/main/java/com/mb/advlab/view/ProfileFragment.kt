@@ -15,9 +15,6 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.mb.advlab.adapters.PostAdapter
 import com.mb.advlab.databinding.FragmentProfileBinding
-import com.mb.advlab.model.responses.Followeds
-import com.mb.advlab.model.responses.GetCount
-import com.mb.advlab.model.responses.ResponsePost
 
 import com.mb.advlab.utils.Resource
 import com.mb.advlab.utils.SharedPrefManager
@@ -27,10 +24,14 @@ import android.graphics.BitmapFactory
 
 import android.os.Build
 import android.provider.Settings
+import android.text.Layout
 import android.util.Base64
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import com.bumptech.glide.Glide
+import com.mb.advlab.R
+import com.mb.advlab.adapters.IOnClick
+import com.mb.advlab.model.responses.*
 import com.mb.advlab.utils.ImageHelper
 import com.mb.advlab.utils.UriHelper
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -100,12 +101,26 @@ class ProfileFragment : Fragment() {
                 activityResultLauncher.launch(appPerms)
             }
         }
-
         checkPhoto()
         getCounts(token, id)
         getUserPosts(token, id)
         getFollowedDetails(token, id)
         getFollowerDetails(token, id)
+
+
+
+        adapter.addListener(object : IOnClick{
+            override fun onClick(item: FolloweDDetails) {
+            }
+
+            override fun onClick(item: PostResponse) {
+
+                val action = ProfileFragmentDirections.toPostDetails(item.id)
+                findNavController().navigate(action)
+                }
+
+            })
+
     }
 
     private fun checkPhoto() {

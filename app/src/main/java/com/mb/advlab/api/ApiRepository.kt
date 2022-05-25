@@ -86,4 +86,10 @@ class ApiRepository @Inject constructor(private val remoteDataSource: RemoteData
             remoteDataSource.findById(token, id)
         }
     )
+
+    fun getPostDetails(token: String, id: Long) = networkOperation (
+        call = {
+            remoteDataSource.getPostDetails(token, id)
+        }
+            )
 }

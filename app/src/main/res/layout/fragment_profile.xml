@@ -30,7 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="323\nFollowing"
+
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="18sp"
@@ -55,7 +55,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="0\nFollower"
+
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="18sp"

@@ -9,10 +9,16 @@ import com.mb.advlab.databinding.ItemFilmBinding
 import com.mb.advlab.model.responses.PostResponse
 
 class PostAdapter : ListAdapter<PostResponse,PostAdapter.PostViewHolder>(DIFF_CALLBACK)  {
+    var onClick : IOnClick? = null
+
     class PostViewHolder(private val binding : ItemFilmBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item : PostResponse){
+        fun bind(item : PostResponse, onClick: IOnClick?){
             binding.postName.text = item.filmName
+
+            binding.postLayout.setOnClickListener {
+                onClick?.onClick(item)
+            }
         }
 
     }
@@ -33,6 +39,10 @@ class PostAdapter : ListAdapter<PostResponse,PostAdapter.PostViewHolder>(DIFF_CA
     }
 
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(getItem(position),onClick)
+    }
+
+    fun addListener(click: IOnClick?) {
+        this.onClick = click
     }
 }

@@ -17,4 +17,8 @@
     <string name="desc">Write your comments about the movie..</string>
     <string name="share">Share</string>
     <string name="follower">Follower</string>
+    <string name="begen">Beğen</string>
+    <string name="kaydet">Kaydet</string>
+    <string name="yorum">Yorum yap</string>
+    <string name="send">Gönder</string>
 </resources>

@@ -17,6 +17,7 @@ import com.mb.advlab.adapters.RelationAdapters
 import com.mb.advlab.databinding.FragmentFollowedDetailsBinding
 import com.mb.advlab.model.request.FollowUnRequest
 import com.mb.advlab.model.responses.FolloweDDetails
+import com.mb.advlab.model.responses.PostResponse
 import com.mb.advlab.utils.Resource
 import com.mb.advlab.utils.SharedPrefManager
 import com.mb.advlab.viewmodel.profile.ProfileViewModel
@@ -57,6 +58,9 @@ class FollowedDetailsFragment : Fragment() {
                     0-> follow(token,id,item)
                     1-> unfollow(token,id,item)
                 }
+            }
+
+            override fun onClick(item: PostResponse) {
             }
 
         })
